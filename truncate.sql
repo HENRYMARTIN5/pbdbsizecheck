@@ -1,0 +1,1 @@
+TRUNCATE TABLE [dbo].[enr_txn_shipping_xml]
