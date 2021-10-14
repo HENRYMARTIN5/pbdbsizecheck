@@ -1,0 +1,1 @@
+& $Env:VIRTUAL_ENV\Scripts\pip.exe freeze > .\app_req.txt

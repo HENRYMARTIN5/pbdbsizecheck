@@ -1,3 +1,17 @@
+<!-- 
+######################################################################################################
+# Made by                                                                                            #
+#                                                                                                    #
+#  ██╗  ██╗███████╗███╗   ██╗██████╗ ██╗   ██╗    ███╗   ███╗ █████╗ ██████╗ ████████╗██╗███╗   ██╗  #
+#  ██║  ██║██╔════╝████╗  ██║██╔══██╗╚██╗ ██╔╝    ████╗ ████║██╔══██╗██╔══██╗╚══██╔══╝██║████╗  ██║  #
+#  ███████║█████╗  ██╔██╗ ██║██████╔╝ ╚████╔╝     ██╔████╔██║███████║██████╔╝   ██║   ██║██╔██╗ ██║  #
+#  ██╔══██║██╔══╝  ██║╚██╗██║██╔══██╗  ╚██╔╝      ██║╚██╔╝██║██╔══██║██╔══██╗   ██║   ██║██║╚██╗██║  #
+#  ██║  ██║███████╗██║ ╚████║██║  ██║   ██║       ██║ ╚═╝ ██║██║  ██║██║  ██║   ██║   ██║██║ ╚████║  #
+#  ╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝   ╚═╝       ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝╚═╝  ╚═══╝  #   
+#                                                                                                    #
+######################################################################################################
+ -->
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,7 +22,7 @@
     
     <!-- JavaScript -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-
+    
     <!-- CSS -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <!-- Default theme -->
@@ -123,13 +137,13 @@
     <button class="btn btn-danger" onclick="runQueryThree();">Truncate XML Data</button>
     <p>Right click to show API and direct links.</p>
     <div id="menu" class="noselect">
-        <a onclick="copyTextToClipboard(document.baseURI+'query/direct?dbaction=shipit');">
+        <a onclick="copyTextToClipboard(document.baseURI+'query/direct?dbaction=shipit&access_token='+urlParams.get('access_token'));">
             Copy direct link to file size
         </a>
-        <a onclick="copyTextToClipboard(document.baseURI+'query/direct?dbaction=config');">
+        <a onclick="copyTextToClipboard(document.baseURI+'query/direct?dbaction=config&access_token='+urlParams.get('access_token'));">
             Copy direct link to config size
         </a>
-        <a onclick="copyTextToClipboard(document.baseURI+'query/direct?dbaction=truncate');;">
+        <a onclick="copyTextToClipboard(document.baseURI+'query/direct?dbaction=truncate&access_token='+urlParams.get('access_token'));">
             Copy direct link to truncate XML (WARNING: NOT RECCOMENDED)
         </a>
     </div>
@@ -149,7 +163,7 @@
         }
 
         function runQueryOne(){
-            $.get('/query/shipitsize',
+            $.get('/query/shipitsize?access_token='+urlParams.get('access_token'),
                 function (data, textStatus, jqXHR) {
                     document.getElementById("one").innerHTML = data["result"]["FILE_SIZE_MB"];
                     document.getElementById("two").innerHTML = data["result"]["SPACE_USED_MB"];
@@ -160,7 +174,7 @@
             );
         };
         function runQueryTwo(){
-            $.get('/query/configsize',
+            $.get('/query/configsize?access_token='+urlParams.get('access_token'),
                 function (data, textStatus, jqXHR) {
                     document.getElementById("one").innerHTML = data["result"]["FILE_SIZE_MB"];
                     document.getElementById("two").innerHTML = data["result"]["SPACE_USED_MB"];
@@ -176,7 +190,7 @@
         }
 
         function queryThreeConfirmed(){
-            $.get('/query/truncate',
+            $.get('/query/truncate?access_token='+urlParams.get('access_token'),
                 function (data, textStatus, jqXHR) {
                     if(data["result"] == "Internal Server Error"){
                         alertify.error("Failed: Internal Server Error");
@@ -192,7 +206,9 @@
     <!-- Bootstrap Js and Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $.get('/query/shipitsize',
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        $.get('/query/shipitsize?access_token='+urlParams.get('access_token'),
             function (data, textStatus, jqXHR) {
                 document.getElementById("one").innerHTML = data["result"]["FILE_SIZE_MB"];
                 document.getElementById("two").innerHTML = data["result"]["SPACE_USED_MB"];
@@ -243,5 +259,38 @@
         i.opacity = "1";
         }
     </script>
+    <script>
+        console.log("Sup, welcome to the developer console!");
+        function normalFunctionNothingToSeeHere(){
+            var end = Date.now() + (4.5 * 1000);
+
+            var colors = ['#bb0000', '#ffffff'];
+            console.log("🚨EASTER EGG ALERT! EASTER EGG ALERT!🚨");
+            console.log("https://home.henrymartin.co");
+            alertify.alert('Easter Egg Uncovered!', 'This program was written by <a href="http://home.henrymartin.co">Henry Martin</a>.', function(){  });
+            (function frame() {
+            confetti({
+                particleCount: 2,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 },
+                colors: colors
+            });
+            confetti({
+                particleCount: 2,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 },
+                colors: colors
+            });
+
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+            }());
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <input onclick="normalFunctionNothingToSeeHere();" type="submit" class="d-flex align-items-end flex-column"style="color: transparent; background-color: transparent; border-color: transparent; cursor: default; outline: 0;">
   </body>
 </html>

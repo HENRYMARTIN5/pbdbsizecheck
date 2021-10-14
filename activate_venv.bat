@@ -1,0 +1,1 @@
+.\v_app\Scripts\activate.bat.\v_app\Scripts\activate.ps1dir

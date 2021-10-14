@@ -1,0 +1,1 @@
+@echo offREM "Convert to PowerShell"@echo onecho Creating virtual directory if it does not exist@echo offif not exist .\v_app\ (     python -m venv v_app     .\v_app\Scripts\activate.bat)@echo onecho Installing Requirements if available@echo offif exist app_req.txt (    pip install -r app_req.txt)

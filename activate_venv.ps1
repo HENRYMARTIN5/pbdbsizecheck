@@ -1,0 +1,1 @@
+$ScriptToRun= ".\v_app\Scripts\activate.ps1"&$ScriptToRun

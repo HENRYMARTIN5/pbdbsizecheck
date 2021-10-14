@@ -1,1 +1,1 @@
-TRUNCATE TABLE [dbo].[enr_txn_shipping_xml]
+TRUNCATE TABLE [shipit].[dbo].[enr_txn_shipping_xml]
